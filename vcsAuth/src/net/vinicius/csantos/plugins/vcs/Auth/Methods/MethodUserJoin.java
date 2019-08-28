@@ -64,6 +64,7 @@ public class MethodUserJoin {
 				try {
 					if(rs.next()) {
 						MethodUser.getUserID().put(player, rs.getInt("USERID"));
+						MethodUser.getUserIDString().put(player.getName(), rs.getInt("USERID"));
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -94,6 +95,7 @@ public class MethodUserJoin {
 						String sqlU = String.format("UPDATE `vcsusers` SET `USERONLINE` = '1', `USERLASTLOGIN` = CURRENT_TIMESTAMP, `USERLASTIP` = '%1$s' WHERE `USERID` = %2$s AND STATUS = 1", userLastIP, rs.getInt("USERID"));
 						mysql.executeUpdate(sqlU);
 						MethodUser.getUserID().put(player, rs.getInt("USERID"));
+						MethodUser.getUserIDString().put(player.getName(), rs.getInt("USERID"));
 						MethodUser.getInLogin().remove(player);
 						MethodUser.getLoginLocation().remove(player);
 					}

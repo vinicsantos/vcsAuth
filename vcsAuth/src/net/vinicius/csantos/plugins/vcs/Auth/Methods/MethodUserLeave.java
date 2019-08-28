@@ -20,6 +20,7 @@ public class MethodUserLeave {
 		String sql = String.format("UPDATE `vcsusers` SET `USERONLINE` = '0' WHERE `USERID` = %1$s AND STATUS = 1;", idPlayer);
 		mysql.executeUpdate(sql);
 		MethodUser.getUserID().remove(player);
+		MethodUser.getUserIDString().remove(player.getName());
 	}
 
 }

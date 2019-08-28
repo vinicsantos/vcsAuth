@@ -37,6 +37,7 @@ public class Configs{
 		config.addDefault("Auth.Messages.UserNotFound", "&7Usuario não encontrado.");
 		config.addDefault("Auth.Messages.UserNotRegistered", "&7Usuario não registrado.");
 		config.addDefault("Auth.Messages.DontHavePermission", "&7Voce não tem permissao para executar este comando.");
+		config.addDefault("Auth.Messages.UserUnregistered", "&7Registro do usuario \"%player%\" removido com sucesso.");
 		config.addDefault("Auth.Delays.LoginRegisterKick", 60);
 		config.addDefault("Auth.Delays.LoginRegisterMessage", 30);
 		Main.getMain().saveConfig();

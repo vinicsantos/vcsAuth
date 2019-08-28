@@ -19,7 +19,7 @@ public class MethodAdmin {
 	 * @param target
 	 * @param pass
 	 */
-	public void unRegisterUser(Player player, Player target, String pass) {
+	public void unRegisterUser(Player player, String target, String pass) {
 		MySQLStorage mysql = utils.getMysql();
 		String sql = String.format(
 				"SELECT `USERID`, `USERUUID`, `REALNAME`, `USERNAME`, `USEREMAIL`, `USERONLINE`, `STATUS` FROM `vcsusers` WHERE 1=1 AND `username` = '%1$s' AND `REALNAME` = '%2$s' AND `USERONLINE` = 1 AND `USERPASSWORD` = md5('%3$s') AND STATUS = 1",
@@ -28,15 +28,15 @@ public class MethodAdmin {
 			try {
 				if(rs.next()) {
 					String sqlQ = String.format(
-							"SELECT `USERID`, `USERUUID`, `REALNAME`, `USERNAME`, `USEREMAIL`, `USERONLINE`, `STATUS` FROM `vcsusers` WHERE 1=1 AND `username` = '%1$s' AND `REALNAME` = '%2$s' AND `USERONLINE` = 1 AND STATUS = 1",
-							target.getName().toLowerCase(), target.getName());
-					System.out.print(sqlQ);
+							"SELECT `USERID`, `USERUUID`, `REALNAME`, `USERNAME`, `USEREMAIL`, `USERONLINE`, `STATUS` FROM `vcsusers` WHERE 1=1 AND `username` = '%1$s' AND `REALNAME` = '%2$s' AND (`USERONLINE` = 1 OR `USERONLINE` = 0) AND STATUS = 1",
+							target.toLowerCase(), target);
 					mysql.executeQuery(sqlQ, rsQ ->{
 						try {
 							if(rsQ.next()) {
-								int idTarget = MethodUser.getUserID().get(target);
-								String sqlU = String.format("UPDATE `vcsusers` SET `USERONLINE` = '1', `STATUS` = '9' WHERE`vcsusers`.`USERID` = %1$s", idTarget);
+								int idTarget = rsQ.getInt("USERID");
+								String sqlU = String.format("UPDATE `vcsusers` SET `USERONLINE` = '2', `STATUS` = '9' WHERE`vcsusers`.`USERID` = %1$s", idTarget);
 								mysql.executeUpdate(sqlU);
+								player.sendMessage(config.getString("Auth.Messages.UserUnregistered").replace("&", "§").replace("%player%", target));
 							}else {
 								player.sendMessage(config.getString("Auth.Messages.UserNotRegistered").replace("&", "§"));
 							}

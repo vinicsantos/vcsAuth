@@ -1,6 +1,5 @@
 package net.vinicius.csantos.plugins.vcs.Auth.Commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,10 +16,10 @@ public class AdminOpCommands implements CommandExecutor {
 
 	/**
 	 * Método responsavel pelos comandos de Administrador/OP
-	 * @param sender
-	 * @param cmd
-	 * @param arg
-	 * @param args
+	 * @param sender A entidade que esta executando o comando
+	 * @param cmd O comando que esta sendo executado
+	 * @param arg Argumento
+	 * @param args Lista de argumentos usados no comando
 	 */
 	 
 	@Override
@@ -30,10 +29,9 @@ public class AdminOpCommands implements CommandExecutor {
 			if(cmd.getName().equalsIgnoreCase("UnRegistrar")) {
 				if(player.isOp() || player.hasPermission("vcsAuth.unRegisterUser")) {
 					if(args.length == 2) {
-						Player target = (Player) Bukkit.getServer().getPlayer(args[0]);
+						String target = args[0];
 						System.out.println(args[0]);
 						System.out.println(args[1]);
-						System.out.println(target.getName());
 							admin.unRegisterUser(player, target, args[1]);
 					}else {
 						player.sendMessage(config.getString("Auth.Messages.CorrectAdminUnRegister").replace("&", "§"));
