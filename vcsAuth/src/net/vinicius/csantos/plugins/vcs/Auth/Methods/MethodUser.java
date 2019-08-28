@@ -14,6 +14,7 @@ public class MethodUser {
 	private static ArrayList<Player> inLogin = new ArrayList<>();
 	private static HashMap<Player, Location> loginLocation = new HashMap<>();
 	private static HashMap<Player, Integer> userID = new HashMap<>();
+	private static HashMap<String, Integer> userIDString = new HashMap<>(); 
 	private static HashMap<Player, Boolean> registered = new HashMap<>();
 	static FileConfiguration config = Main.getMain().getConfig();
 	
@@ -59,5 +60,13 @@ public class MethodUser {
 
 	public static void setUserID(HashMap<Player, Integer> userID) {
 		MethodUser.userID = userID;
+	}
+
+	public static HashMap<String, Integer> getUserIDString() {
+		return userIDString;
+	}
+
+	public static void setUserIDString(HashMap<String, Integer> userIDString) {
+		MethodUser.userIDString = userIDString;
 	}
 }
