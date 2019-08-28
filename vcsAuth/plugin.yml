@@ -1,0 +1,17 @@
+name: vcsAuth
+version: 1.0
+main: net.vinicius.csantos.plugins.vcs.Auth.Main
+author: Vinicius Carvalho
+commands:
+   registrar:
+      description: Comando usado para se registrar
+   logar:
+      description: Comando usado para logar
+   registrarEmail:
+      description: Comando usado para registrar um email
+   alterarEmail:
+      description: Comando usado para alterar o email
+   alterarSenha:
+      description: Comando usado para alterar a senha
+   unRegistrar:
+      description: Comando usado para desregistrar um usuario por administrador 
