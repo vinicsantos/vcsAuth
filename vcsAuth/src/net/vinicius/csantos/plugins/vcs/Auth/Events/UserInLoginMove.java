@@ -15,6 +15,11 @@ public class UserInLoginMove implements Listener {
 	FileConfiguration config = Main.getMain().getConfig();
 	MethodUserJoin userJ = new MethodUserJoin();
 
+	/**
+	 * Método Responsavel por não permitir que o usuario mova pelo mundo
+	 * @param e Evento que esta sendo utilizado (PlayerMoveEvent)
+	 */
+	
 	@EventHandler
 	public void onPlayerInLoginMove(PlayerMoveEvent e) {
 		if (MethodUser.getInLogin().contains(e.getPlayer())) {

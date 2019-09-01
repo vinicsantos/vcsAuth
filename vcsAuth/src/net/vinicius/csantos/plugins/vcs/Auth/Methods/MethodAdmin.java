@@ -15,9 +15,9 @@ public class MethodAdmin {
 	/**
 	 * Metodo responsavel por retirar o registro de um usuario por Administrador
 	 * 
-	 * @param player
-	 * @param target
-	 * @param pass
+	 * @param player Player que esta executando a ação
+	 * @param target Player que perderá o registro
+	 * @param pass Senha do Player que esta exutando a ação
 	 */
 	public void unRegisterUser(Player player, String target, String pass) {
 		MySQLStorage mysql = utils.getMysql();
@@ -48,7 +48,8 @@ public class MethodAdmin {
 					player.sendMessage(config.getString("Auth.Messages.WrongPassword").replace("&", "§"));
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println(String.format("Houve um erro ao remover o registro do usuario:\n%s", e.getMessage()));
+				player.sendMessage(config.getString("Auth.Messages.ErrorOnUserUnregister").replace("&", "§").replace("%player%", target));
 			}
 		});
 	}

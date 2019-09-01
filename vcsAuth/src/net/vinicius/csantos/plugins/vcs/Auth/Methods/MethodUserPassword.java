@@ -14,9 +14,9 @@ public class MethodUserPassword {
 
 	/**
 	 * Método responsavel pela alteração da senha do usuário
-	 * @param player
-	 * @param oldPass
-	 * @param newPass
+	 * @param player Usuário que esta alterando a senha
+	 * @param oldPass A senha antiga do usuario
+	 * @param newPass A senha nova do usuario
 	 */
 	public void changePassword(Player player, String oldPass, String newPass) {
 		MySQLStorage mysql = utils.getMysql();
@@ -36,7 +36,8 @@ public class MethodUserPassword {
 					player.sendMessage(config.getString("Auth.Messages.WrongPassword").replace("&", "§"));
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				player.sendMessage(config.getString("Auth.Messages.ErrorOnChangePassword").replace("&", "§"));
+				System.out.println(String.format("Houve um erro ao tentar alterar a senha de um usuario:\n%s", e.getMessage()));
 			}
 		});
 	}

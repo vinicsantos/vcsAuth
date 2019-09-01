@@ -15,9 +15,9 @@ public class MethodUserEmail {
 	
 	/**
 	 * Método responsavel pelo registro de um novo email do usuario
-	 * @param player
-	 * @param email
-	 * @param password
+	 * @param player Usuario que irá registrar o email
+	 * @param email Email registrado
+	 * @param password Senha do Usuario
 	 */
 	public void registerEmail(Player player, String email, String password) {
 		MySQLStorage mysql = utils.getMysql();
@@ -48,15 +48,16 @@ public class MethodUserEmail {
 					player.sendMessage(config.getString("Auth.Messages.AccountNotFound").replace("&", "§"));
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				player.sendMessage(config.getString("Auth.Messages.ErrorOnEmailRegister").replace("&", "§"));
+				System.out.println(String.format("Houve um erro ao tentar registrar um email: \n%s", e.getMessage()));
 			}
 		});
 	}
 	
 	/**
 	 * Método responsavel pela verificação de email ja existente no banco de dados
-	 * @param email
-	 * @return
+	 * @param email Email para verificação
+	 * @return <code>Boolean</code> com o verificação do email
 	 */
 	public Boolean getEmailAlreadyRegistered(String email) {
 		MySQLStorage mysql = utils.getMysql();
@@ -69,8 +70,7 @@ public class MethodUserEmail {
 					response = false;
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(String.format("Houve um erro ao tentar verificar um email registrado:\n%s", e.getMessage()));
 			}
 		});
 		return response;
@@ -78,9 +78,9 @@ public class MethodUserEmail {
 
 	/**
 	 * Método responsavel pela alteração do email do usuario
-	 * @param player
-	 * @param email
-	 * @param password
+	 * @param player Usuário que ira alterar o email
+	 * @param email Email que sera alterado
+	 * @param password Senha do usuario
 	 */
 	public void changeEmail(Player player, String email, String password) {
 		MySQLStorage mysql = utils.getMysql();
@@ -110,7 +110,8 @@ public class MethodUserEmail {
 					player.sendMessage(config.getString("Auth.Messages.AccountNotFound").replace("&", "§"));
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println(String.format("Houve um erro ao tentar alterar um email:\n%s", e.getMessage()));
+				player.sendMessage(config.getString("Auth.Messages.ErrorOnEmailChange").replace("&", "§"));
 			}
 		});
 	}

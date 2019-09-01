@@ -32,6 +32,10 @@ public class Main extends JavaPlugin {
 	FileConfiguration tableConfig = null;
 	File tableFile = null;
 
+	/**
+	 * Metodo responsavel por executar o reload no arquivo de configuração das tabelas
+	 * @throws UnsupportedEncodingException
+	 */
 	public void reloadTableConfig() throws UnsupportedEncodingException {
 		if (tableFile == null) {
 			tableFile = new File(getDataFolder(), "tables.yml");
@@ -45,6 +49,11 @@ public class Main extends JavaPlugin {
 		}
 	}
 
+	/**
+	 * Método responsavel por obter o arquivo de configuração das tabelas
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	public FileConfiguration getTableConfig() throws UnsupportedEncodingException {
 		if (tableConfig == null) {
 			this.reloadTableConfig();
@@ -52,6 +61,10 @@ public class Main extends JavaPlugin {
 		return tableConfig;
 	}
 
+	
+	/**
+	 * Método responsavel por salvar o arquivo de configuração das tabelas
+	 */
 	public void saveTableConfig() {
 		if (tableConfig == null || tableFile == null) {
 			return;
@@ -63,6 +76,9 @@ public class Main extends JavaPlugin {
 		}
 	}
 
+	/**
+	 * Método responsável por salvar o arquivo padrão de configuralção das tabelas
+	 */
 	public void saveDefaultTableConfig() {
 		if (tableFile == null) {
 			tableFile = new File(getDataFolder(), "tables.yml");
@@ -72,6 +88,10 @@ public class Main extends JavaPlugin {
 		}
 	}
 
+	/**
+	 * Método responsavel pelas configurações inicias do arquivo de configuração do plugin
+	 * @throws UnsupportedEncodingException
+	 */
 	public void Config() throws UnsupportedEncodingException {
 		this.saveDefaultConfig();
 		this.saveDefaultTableConfig();
@@ -91,6 +111,9 @@ public class Main extends JavaPlugin {
 		saveConfig();
 	}
 
+	/**
+	 * Método responsavel por inicializar o plugin
+	 */
 	@Override
 	public void onEnable() {
 		plugin = this;
@@ -99,7 +122,7 @@ public class Main extends JavaPlugin {
 			new Configs();
 			tableConfig = this.getTableConfig();
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			System.out.println(String.format("Houve um erro ao tentar criar as tabelas necessárias para o plugins \"vcsAuth\":\n%s", e.getMessage()));
 		}
 		String ip = config.getString("MySQL.host");
 		String user = config.getString("MySQL.user");
@@ -130,12 +153,18 @@ public class Main extends JavaPlugin {
 
 	}
 
+	/**
+	 * Método responsavel por desinicializar o plugin
+	 */
 	@Override
 	public void onDisable() {
 		plugin = null;
 	}
 	
-	
+	/**
+	 * Método responsavel por dar acesso a main class para as demais classes
+	 * @return <code>Main</code> Main class
+	 */
 	public static Main getMain() {
 		return plugin;
 	}

@@ -20,6 +20,10 @@ public class UserJoin implements Listener {
 	FileConfiguration config = Main.getMain().getConfig();
 	MethodUserJoin userJ = new MethodUserJoin();
 
+	/**
+	 * Método Responsavel por fazer a verificação de quando o player entrar no servidor.
+	 * @param e Evento que esta sendo utilizado (PlayerJoinEvent)
+	 */
 	@EventHandler
 	public void onUserJoinTheServer(PlayerJoinEvent e) {
 		userJ.getUserRegistered(e.getPlayer());

@@ -14,7 +14,7 @@ public class MethodUserJoin {
 	
 	/**
 	 * Método responsavel para a verificação de registro do usuario
-	 * @param player
+	 * @param player Usuario que esta sendo verificado
 	 */
 	public void getUserRegistered(Player player) {
 		MySQLStorage mysql = util.getMysql();
@@ -29,16 +29,16 @@ public class MethodUserJoin {
 					MethodUser.getRegistered().put(player, true);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println(String.format("Houve um erro ao verificar o registro do usuario:\n%s", e.getMessage()));
 			}
 		});
 	}
 	
 	/**
 	 * Método responsavel pelo registro do usuario
-	 * @param player
-	 * @param password
-	 * @param email
+	 * @param player Usuario que esta sendo registrado
+	 * @param password Senha de autorização do usuario
+	 * @param email Email do usuario (Opcional)
 	 */
 	public void playerRegister(Player player, String password, String email) {
 		if(!MethodUser.getRegistered().get(player)) {
@@ -67,8 +67,8 @@ public class MethodUserJoin {
 						MethodUser.getUserIDString().put(player.getName(), rs.getInt("USERID"));
 					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					player.sendMessage(config.getString("Auth.Messages.ErrorOnRegister").replace("&", "§"));
+					System.out.println(String.format("Houve um erro ao tentar registrar um usuario:\n&s", e.getMessage()));
 				}
 			});
 		}else {
@@ -78,8 +78,8 @@ public class MethodUserJoin {
 	
 	/**
 	 * Método responsavel pela autenticação do usuario
-	 * @param player
-	 * @param password
+	 * @param player Usuario que esta entrando
+	 * @param password Senha do usuario
 	 */
 	public void playerLogIn(Player player, String password) {
 		if(MethodUser.getRegistered().get(player)) {
@@ -100,7 +100,8 @@ public class MethodUserJoin {
 						MethodUser.getLoginLocation().remove(player);
 					}
 				} catch (SQLException e) {
-					e.printStackTrace();
+					player.sendMessage(config.getString("Auth.Messages.ErrorOnLogin").replace("&", "§"));
+					System.out.println(String.format("Houve um erro ao tentar logar um usuario:\n&s", e.getMessage()));
 				}
 			});
 		}else {
