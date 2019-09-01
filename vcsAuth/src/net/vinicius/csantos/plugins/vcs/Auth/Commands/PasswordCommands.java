@@ -16,11 +16,12 @@ public class PasswordCommands implements CommandExecutor {
 
 	/**
 	 * Método responsavel pelo comando de alteração de senha
-	 * @param sender
-	 * @param cmd
-	 * @param arg
-	 * @param args
+	 * @param sender A entidade que esta executando o comando
+	 * @param cmd O comando que esta sendo executado
+	 * @param arg Argumento
+	 * @param args Lista de argumentos usados no comando
 	 */
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String arg, String[] args) {
 		if (sender instanceof Player) {

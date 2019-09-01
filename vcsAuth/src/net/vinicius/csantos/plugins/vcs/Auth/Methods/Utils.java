@@ -10,6 +10,10 @@ public class Utils{
 	
 	FileConfiguration config = Main.getMain().getConfig();
 
+	/**
+	 * Método responsavel pela conexao com o banco de dados do servidor
+	 * @return
+	 */
 	public MySQLStorage getMysql() {
 		String ip = config.getString("MySQL.host");
 		String user = config.getString("MySQL.user");

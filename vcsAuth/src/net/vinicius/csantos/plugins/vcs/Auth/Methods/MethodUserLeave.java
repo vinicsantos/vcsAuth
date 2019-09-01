@@ -12,7 +12,7 @@ public class MethodUserLeave {
 	
 	/**
 	 * Método responsavel pela alteração do status de logado do usuario
-	 * @param player
+	 * @param player Usuário que esta participando da ação
 	 */
 	public void userUpdateQuit(Player player) {
 		int idPlayer = MethodUser.getUserID().get(player);

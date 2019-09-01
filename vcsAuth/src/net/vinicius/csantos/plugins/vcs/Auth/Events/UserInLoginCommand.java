@@ -16,7 +16,7 @@ public class UserInLoginCommand implements Listener {
 	
 	/**
 	 * Método Responsavel por verificar os comandos digitados pelo usuario e chamada do metodo de autenticação/registro do usuário
-	 * @param e
+	 * @param e Evento que esta sendo utilizado (PlayerCommandPreprocessEvent)
 	 */
 	
 	@EventHandler

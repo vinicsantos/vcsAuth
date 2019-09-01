@@ -9,8 +9,14 @@ public class Configs{
 
 	FileConfiguration config = Main.getMain().getConfig();
 	
+	/**
+	 * Método responsavel por definir as configurações do arquivo de configuração do plugin
+	 */
 	public Configs() {
 		config.addDefault("Auth.Messages.Register", "&7Não encontramos seu registro no servidor.\nPor favor se registre usando &8/registrar <Senha> <ConfirmacaoSenha> <Email(Opcional)>");
+		config.addDefault("Auth.Messages.ErrorOnRegister", "&7Houve um erro ao tentar realizar seu registro\nPor favor contacte um administrador pelo nosso discord\nDiscord: discord.gg/DHGYFG");
+		config.addDefault("Auth.Messages.ErrorOnLogin", "&7Houve um erro ao tentar realizar seu login\nPor favor contacte um administrador pelo nosso discord\nDiscord: discord.gg/DHGYFG");
+		config.addDefault("Auth.Messages.ErrorOnChangePassword", "&7Houve um erro ao tentar alterar sua senha\nPor favor contacte um administrador.");
 		config.addDefault("Auth.Messages.Login", "&7Encontramos seu registro no servidor.\nPor favor logue usando &8/logar <Senha>");
 		config.addDefault("Auth.Messages.PasswordDoesntMatch", "&7As senhas inseridas não batem.");
 		config.addDefault("Auth.Messages.HaveRegistered", "&7Voce foi registrado com sucesso!");
@@ -37,7 +43,10 @@ public class Configs{
 		config.addDefault("Auth.Messages.UserNotFound", "&7Usuario não encontrado.");
 		config.addDefault("Auth.Messages.UserNotRegistered", "&7Usuario não registrado.");
 		config.addDefault("Auth.Messages.DontHavePermission", "&7Voce não tem permissao para executar este comando.");
+		config.addDefault("Auth.Messages.ErrorOnEmailRegister", "&7Houve um erro e não foi possivel reigstrar um email\nContate um administrador para resolver o seu problema.");
+		config.addDefault("Auth.Messages.ErrorOnEmailChange", "&7Houve um erro e não foi possivel alterar o email\nContate um administrador para resolver o seu problema.");
 		config.addDefault("Auth.Messages.UserUnregistered", "&7Registro do usuario \"%player%\" removido com sucesso.");
+		config.addDefault("Auth.Messages.ErrorOnUserUnregister", "&7Houve um erro ao remover o registro do usuario \"%player%\".");
 		config.addDefault("Auth.Delays.LoginRegisterKick", 60);
 		config.addDefault("Auth.Delays.LoginRegisterMessage", 30);
 		Main.getMain().saveConfig();
